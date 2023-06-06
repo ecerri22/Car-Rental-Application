@@ -1,0 +1,16 @@
+052 Jane Smith A1234567 California 123-4567 0
+041 John Davis B9876543 Texas 987-6543 1
+004 Liam Miller C4567890 Florida 234-5678 5
+026 Noah Wilson D3210987 Georgia 876-5432 0
+012 Ava Johnson E7654321 Arkansas 345-6789 2
+085 Sophia Clark F8901234 Georgia 678-9012 0
+056 Mia Brown G2345678 Michigan 432-1098 0
+088 Alex Ramirez H8765432 Texas 890-1234 1
+154 Oliver Carter I3456789 Texas 567-8901 3 
+102 Emma Thompson J6789012 Florida 901-2345 3
+782 Charlotte Lee K7890123 Florida 123-4567 2
+452 Amelia Scott L2109876 Michigan 123-4567 2
+912 James Harris M5432109 Arkansas 123-4567 5
+040 Henry Roberts N8765432 Arkansas 123-4567 5
+420 Emily Parker P9012345 Florida 123-4567 4
+002 Harper Evans Q2345678 California 123-4567 7
