@@ -1,14 +1,7 @@
 #ifndef ROSELA_H_INCLUDED
 #define ROSELA_H_INCLUDED
 
-/*
-searchVehicleByPlateNumber - Works!!!
-filterReservations - Works!!!
-sorting - Works!!!
-addNewClient - Works!!!
-*/
-
-void searchVehicleByPlateNumber(const char* plateNumber) {
+void searchVehicleByPlateNumber(char* plateNumber) {
     FILE *vehiclesFile;
 
     vehiclesFile = fopen("vehicles.txt", "r");
@@ -50,8 +43,6 @@ void searchVehicleByPlateNumber(const char* plateNumber) {
     fclose(vehiclesFile);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 void filterReservations(float price) {
     FILE* reservationsFile = fopen("reservations.txt", "r");
     if (reservationsFile == NULL) {
@@ -92,8 +83,6 @@ void filterReservations(float price) {
     fclose(reservationsFile);
     fclose(newFile);
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void sorting() {
     FILE *vehiclesFile;
@@ -158,17 +147,17 @@ void addNewClient(struct Client **head3,struct Client **tail3)
     newClient=(struct Client*)malloc(sizeof(struct Client));
     printf("\nPlease enter the data for the new client: \n");
     printf("Client ID: ");
-    scanf("%d\n", &newClient->clientID);
+    scanf("%d", &newClient->clientID);
     printf("Name: ");
-    scanf("%s\n", newClient->name);
+    scanf("%s", newClient->name);
     printf("Surname: ");
-    scanf("%s\n", newClient->surname);
+    scanf("%s", newClient->surname);
     printf("Passport ID: ");
-    scanf("%s\n", newClient->passportID);
+    scanf("%s", newClient->passportID);
     printf("State: ");
-    scanf("%s\n", newClient->state);
+    scanf("%s", newClient->state);
     printf("Phone number: ");
-    scanf("%s\n", newClient->phoneNumber);
+    scanf("%s", newClient->phoneNumber);
     newClient->reservationCount = 0;
 
     newClient->nextClient=NULL;
@@ -205,4 +194,6 @@ void addNewClient(struct Client **head3,struct Client **tail3)
 
     fclose(fp);
 }
+
+
 #endif // ROSELA_H_INCLUDED

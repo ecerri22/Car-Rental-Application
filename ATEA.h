@@ -2,13 +2,6 @@
 #define ATEA_H_INCLUDED
 #include "structures.h"
 
-/*
-addNewVehicle - Works!!!
-removeVehicle - Works!!! -  Not sure if we should use linked lists here
-displayAllVehicles - Works!!!
-modifyVehicle - Works!!! - But changes the form of data in available_vehicles and doesnt change anything there
-*/
-
 int cnt=0;
 
 void addNewVehicle(struct Vehicle **head, struct Vehicle **tail)
@@ -34,12 +27,12 @@ void addNewVehicle(struct Vehicle **head, struct Vehicle **tail)
 
     newVehicle->nextVehicle = NULL;
 
-    if (*head == NULL)
+    if (*head == NULL) //If the list is empty, make the new vehicle the head and tail
     {
         *head = newVehicle;
         *tail = newVehicle;
     }
-    else
+    else //if not,add the new vehicle at the end of the list
     {
         (*tail)->nextVehicle = newVehicle;
         *tail = newVehicle;
@@ -51,10 +44,10 @@ void addNewVehicle(struct Vehicle **head, struct Vehicle **tail)
     FILE* fp = fopen("vehicles.txt", "a");
     if (fp == NULL)
     {
-        printf("Cannot open this file!");
+        printf("Cannot open this file!\n");
         return;
     }
-    else
+    else  //Write the vehicle data to 'vehicles.txt'
     {
         fprintf(fp, "%s %d %s %s %.2f %d %.2f %d\n", newVehicle->plate, newVehicle->year,
                 newVehicle->model, newVehicle->fuelType, newVehicle->consumption,
@@ -66,7 +59,7 @@ void addNewVehicle(struct Vehicle **head, struct Vehicle **tail)
     FILE* fp1 = fopen("available_vehicles.txt", "a");
     if (fp1 == NULL)
     {
-        printf("Cannot open this file!");
+        printf("Cannot open this file!\n");
         return;
     }
     else
@@ -79,8 +72,7 @@ void addNewVehicle(struct Vehicle **head, struct Vehicle **tail)
     fclose(fp1);
 }
 
-
-void removeVehicle(const char* plate) {
+void removeVehicle(char* plate) {
     // Remove from vehicles.txt
     FILE* fp1 = fopen("vehicles.txt", "r");
     if (fp1 == NULL) {
@@ -98,9 +90,11 @@ void removeVehicle(const char* plate) {
     struct Vehicle currentVehicle;
     int plateFound = 0;
 
+     //// Read vehicle data from 'vehicles.txt'
     while (fscanf(fp1, "%s %d %s %s %f %d %f %d", currentVehicle.plate, &currentVehicle.year,
                   currentVehicle.model, currentVehicle.fuelType, &currentVehicle.consumption,
                   &currentVehicle.seats, &currentVehicle.dailyPrice, &currentVehicle.rentCount) == 8) {
+        // Write the vehicle data to 'temp1.txt' if the plate number doesn't match
         if (strcmp(currentVehicle.plate, plate) != 0) {
             fprintf(temp1, "%s %d %s %s %.2f %d %.2f %d\n", currentVehicle.plate, currentVehicle.year,
                     currentVehicle.model, currentVehicle.fuelType, currentVehicle.consumption,
@@ -113,11 +107,15 @@ void removeVehicle(const char* plate) {
     fclose(fp1);
     fclose(temp1);
 
+
+    //delete 'vehicles.txt'
     if (remove("vehicles.txt") != 0) {
         printf("Cannot delete file 'vehicles.txt'!\n");
         return;
     }
 
+
+    // Rename 'temp1.txt' to 'vehicles.txt'
     if (rename("temp1.txt", "vehicles.txt") != 0) {
         printf("Cannot rename file 'temp1.txt'!\n");
         return;
@@ -173,17 +171,15 @@ void removeVehicle(const char* plate) {
 
     if (plateFound2) {
         printf("The vehicle with plate %s is removed from 'available_vehicles.txt' successfully!\n", plate);
-    } else {
-        printf("Vehicle with plate %s was not found in 'available_vehicles.txt'!\n", plate);
     }
 
-    // Remove from reservations.txt
     FILE* fp3 = fopen("reservations.txt", "r");
     if (fp3 == NULL) {
         printf("Cannot open file 'reservations.txt'!\n");
         return;
     }
 
+    //Remove vehicle from 'reservations.txt'
     FILE* temp3 = fopen("temp3.txt", "w");
     if (temp3 == NULL) {
         printf("Cannot open file 'temp3.txt'!\n");
@@ -221,9 +217,8 @@ void removeVehicle(const char* plate) {
 
     if (plateFound3) {
         printf("The vehicle with plate %s is removed from 'reservations.txt' successfully!\n", plate);
-    } else {
-        printf("Vehicle with plate %s was not found in 'reservations.txt'!\n", plate);
     }
+
 }
 
 
@@ -241,11 +236,14 @@ void displayAllVehicles()
 
     struct Vehicle currentVehicle;
 
+
+    // Read vehicle data from 'vehicles.txt'
     while (fscanf(file, "%s %d %s %s %f %d %f", currentVehicle.plate, &currentVehicle.year,
                   currentVehicle.model, currentVehicle.fuelType, &currentVehicle.consumption,
                   &currentVehicle.seats, &currentVehicle.dailyPrice) != EOF)
     {
 
+     // Print vehicle information
         printf("Plate:         %s\n", currentVehicle.plate);
         printf("Year:          %d\n", currentVehicle.year);
         printf("Model:         %s\n", currentVehicle.model);
@@ -259,8 +257,7 @@ void displayAllVehicles()
     fclose(file);
 }
 
-
-void modifyVehicle(const char* plateNumber)
+void modifyVehicle(char* plateNumber)
 {
     FILE* file = fopen("vehicles.txt", "r+");
     if (file == NULL)
@@ -280,10 +277,13 @@ void modifyVehicle(const char* plateNumber)
         return;
     }
 
+     //Read data from 'vehicles.txt'
     while (fscanf(file, "%s %d %s %s %f %d %f %d", currentVehicle.plate, &currentVehicle.year,
                   currentVehicle.model, currentVehicle.fuelType, &currentVehicle.consumption,
                   &currentVehicle.seats, &currentVehicle.dailyPrice, &currentVehicle.rentCount) == 8)
     {
+
+        //Check if the current vehicle matches the plate number given by the user
         if (strcmp(currentVehicle.plate, plateNumber) == 0)
         {
             printf("Enter new information for the vehicle with plate number %s:\n", plateNumber);
@@ -302,6 +302,8 @@ void modifyVehicle(const char* plateNumber)
             vehicleFound++;
         }
 
+
+         //Write the new data to the temporary file
         fprintf(tempFile, "%s %d %s %s %.2f %d %.2f %d\n", currentVehicle.plate, currentVehicle.year,
                 currentVehicle.model, currentVehicle.fuelType, currentVehicle.consumption,
                 currentVehicle.seats, currentVehicle.dailyPrice, currentVehicle.rentCount);
@@ -310,9 +312,9 @@ void modifyVehicle(const char* plateNumber)
     fclose(file);
     fclose(tempFile);
 
-    if (vehicleFound > 0)
+    if (vehicleFound > 0) //Delete 'vehicles.txt' file
     {
-        if (remove("vehicles.txt") != 0)
+        if (remove("vehicles.txt") != 0)//Rename the temporary file to 'vehicles.txt'
         {
             printf("Error deleting file.\n");
             return;

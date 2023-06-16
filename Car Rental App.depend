@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1686061215 source:c:\users\user\desktop\enia\car rental app\car rental app\main.c
+1686165896 source:c:\users\user\desktop\enia\car rental app\car rental app\main.c
 	<stdio.h>
 	<string.h>
 	"ATEA.h"
@@ -7,16 +7,37 @@
 	"ENIA.h"
 	"DANIELA.h"
 
-1686053066 c:\users\user\desktop\enia\car rental app\car rental app\atea.h
+1686167808 c:\users\user\desktop\enia\car rental app\car rental app\atea.h
 	"structures.h"
 
 1686003454 c:\users\user\desktop\enia\car rental app\car rental app\structures.h
 
-1686061215 c:\users\user\desktop\enia\car rental app\car rental app\rosela.h
+1686163048 c:\users\user\desktop\enia\car rental app\car rental app\rosela.h
 
-1686054018 c:\users\user\desktop\enia\car rental app\car rental app\enia.h
+1686165402 c:\users\user\desktop\enia\car rental app\car rental app\enia.h
 	"structures.h"
 
-1686055116 c:\users\user\desktop\enia\car rental app\car rental app\daniela.h
+1686164349 c:\users\user\desktop\enia\car rental app\car rental app\daniela.h
+	"structures.h"
+
+1686165896 source:c:\users\user\desktop\c programming\car rental app\main.c
+	<stdio.h>
+	<string.h>
+	"ATEA.h"
+	"ROSELA.h"
+	"ENIA.h"
+	"DANIELA.h"
+
+1686167808 c:\users\user\desktop\c programming\car rental app\atea.h
+	"structures.h"
+
+1686003454 c:\users\user\desktop\c programming\car rental app\structures.h
+
+1686163048 c:\users\user\desktop\c programming\car rental app\rosela.h
+
+1686165402 c:\users\user\desktop\c programming\car rental app\enia.h
+	"structures.h"
+
+1686164349 c:\users\user\desktop\c programming\car rental app\daniela.h
 	"structures.h"
 
